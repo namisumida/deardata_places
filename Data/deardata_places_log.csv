@@ -1,0 +1,101 @@
+date,start_location,end_location,mode,n_people
+7/23/2017,Oakland home,Embarcadero metro,metro,1
+7/23/2017,Embarcadero metro,Pier 27,walk,1
+7/23/2017,Pier 27,Big Rec Field,metro,4
+7/23/2017,Big Rec Field,Coffee Cantata,walk,5
+7/23/2017,Coffee Cantata,Zoey's house,walk,3
+7/23/2017,Zoey's house,Oakland home,metro,1
+7/24/2017,Oakland home,Greenberg,bike,1
+7/24/2017,Greenberg,Oakland home,bike,1
+7/24/2017,Oakland home,Walgreens,walk,1
+7/24/2017,Walgreens,TJ Oakland,walk,1
+7/24/2017,TJ Oakland,Oakland home,walk,1
+7/25/2017,Oakland home,Greenberg,bike,1
+7/25/2017,Greenberg,Oakland home,bike,1
+7/25/2017,Oakland home,Fitness SF,walk,1
+7/25/2017,Fitness SF,Oakland home,walk,1
+7/26/2017,Oakland home,Branch Line,car,2
+7/26/2017,Branch Line,MacArthur station,car,3
+7/26/2017,MacArthur station,Oakland home,metro,1
+7/27/2017,Oakland home,Greenberg,bike,1
+7/27/2017,Greenberg,Bushrod Park,bike,1
+7/27/2017,Bushrod Park,Oakland home,bike,1
+7/28/2017,Oakland home,Fitness SF,walk,1
+7/28/2017,Fitness SF,Oakland home,walk,1
+7/28/2017,Oakland home,Shan Dong,car,2
+7/28/2017,Shan Dong,Freezing Point Creamery,walk,2
+7/28/2017,Freezing Point Creamery,Oakland home,car,2
+7/29/2017,Oakland home,Alex's home,metro,1
+11/6/2018,Old home,Work,bus,1
+11/6/2018,Work,Lafayette Park,walk,1
+11/6/2018,Lafayette Park,Work,walk,1
+11/6/2018,Work,1150 15th St NW,walk,1
+11/6/2018,1150 15th St NW,TJ's 14th St,walk,1
+11/6/2018,TJ's 14th St,Old home,walk,1
+11/7/2018,Old home,Work,bus,1
+11/7/2018,Work,Old home,bus,1
+11/8/2018,Old home,Work,bus,1
+11/8/2018,Work,DC Library Express,walk ,1
+11/8/2018,DC Library Express,Work,walk,1
+11/8/2018,Work,Old home,walk,1
+11/8/2018,Old home,Banneker,run,1
+11/8/2018,Banneker,Old home,walk,1
+11/9/2018,Old home,Work,bus,1
+11/9/2018,Work,1150 15th St NW,walk,1
+11/9/2018,1150 15th St NW,CVS near home,walk,1
+11/9/2018,CVS near home,Old home,walk,1
+11/10/2018,Old home,La Colombe,walk,1
+11/10/2018,La Colombe,Old home,walk,1
+11/10/2018,Old home,Banneker,run,1
+11/10/2018,Banneker,Old home,run,1
+11/10/2018,Old home,Target,walk,1
+11/10/2018,Target,Giant,walk,1
+11/10/2018,Giant,Old home,walk,1
+11/10/2018,Old home,Big Hunt,bus,1
+11/10/2018,Big Hunt,Raven Grill,car,3
+11/10/2018,Raven Grill,Old home,walk,1
+11/11/2018,Old home,Woodley Park metro,bus,1
+11/11/2018,Woodley Park metro,Friendship Heights metro,metro,1
+11/11/2018,Friendship Heights metro,Lake Fairfax,car,4
+11/11/2018,Lake Fairfax,Mookie's BBQ,car,4
+11/11/2018,Mookie's BBQ,Friendship Heights metro,car,4
+11/11/2018,Friendship Heights metro,Woodley Park metro,metro,3
+11/11/2018,Woodley Park metro,Old home,bus,1
+11/11/2018,Old home,930 club,walk,3
+11/11/2018,930 club,Old home,walk,1
+11/12/2018,Old home,Lake Fairfax,car,3
+11/12/2018,Lake Fairfax,Old home,car,3
+12/2/2018,Home,Polo fields,bike,1
+12/2/2018,Polo fields,Glen's Garden Market,bike,10
+12/2/2018,Glen's Garden Market,Hana Market,bike,1
+12/2/2018,Hana Market,Regal Cinemas Gallery Place 14,car,3
+12/2/2018,Regal Cinemas Gallery Place 14,Home,car,3
+12/3/2018,Home,Work,metro,1
+12/3/2018,Work,Cardozo High School,bus,1
+12/3/2018,Cardozo High School,Home,walk,1
+12/4/2018,Home,Work,bus,1
+12/4/2018,Work,Home,bus,1
+12/5/2018,Home,Work,bus,1
+12/5/2018,Work,DC Library Express,walk,1
+12/5/2018,DC Library Express,Work,walk,1
+12/5/2018,Work,DC library Mount Pleasant,bus,1
+12/5/2018,DC library Mount Pleasant,Giant,walk,1
+12/5/2018,Giant,Home,walk,1
+12/6/2018,Home,Work,bus,1
+12/6/2018,Work,Home,bus,1
+12/7/2018,Home,Work,bus,1
+12/7/2018,Work,TJ's Foggy Bottom,walk,1
+12/7/2018,TJ's Foggy Bottom,Work,walk,1
+12/7/2018,Work,Compass Coffee,walk,1
+12/7/2018,Compass Coffee,Work,walk,1
+12/7/2018,Work,Home,bus,1
+12/8/18,Home,Eliza's house,car,3
+12/8/18,Eliza's house,Serena's apartment,car,3
+12/8/18,Serena's apartment,Home,walk,1
+12/9/18,Home,Sticky Fingers,walk,1
+12/9/18,Sticky Fingers,Giant,walk,2
+12/9/18,Giant,Lukiih's apartment,walk,2
+12/9/18,Lukiih's apartment,Hana Market,car,2
+12/9/18,Hana Market,Lukiih's apartment,car,2
+12/9/18,Lukiih's apartment,Home,walk,1
+12/10/18,Home,Work,bus,1
