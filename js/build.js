@@ -5,7 +5,8 @@ function rowConverter1(d) {
   return {
     location: d.location,
     lat: parseFloat(d.lat),
-    long: parseFloat(d.long)
+    long: parseFloat(d.long),
+    area: d.area
   }
 }; // end rowconverter1 function
 var parseDate = d3.timeParse("%m/%d/%Y"); // convert strings to Dates
@@ -23,30 +24,35 @@ d3.csv('Data/deardata_places_coord.csv', rowConverter1, function(data) {
   dataset_coords = data;
 
   // Scales
-  xScale = d3.scaleLinear()
-                  .domain([d3.min(dataset_coords, function(d) { return d.long; }), d3.max(dataset_coords, function(d) { return d.long; })])
-                  .range([margin.left,margin.left+graphic_w]);
-  yScale = d3.scaleLinear()
-                   .domain([d3.min(dataset_coords, function(d) { return d.lat; }),
-                            d3.max(dataset_coords, function(d) { return d.lat; })])
-                   .range([graphic_h-margin.top-margin.bottom, margin.top]);
-/*  xScale = {dc: d3.scaleLinear()
-                  .domain([d3.min(dataset_coords, function(d) { return d.long; }), d3.max(dataset_coords, function(d) { return d.long; })])
-                  .range([margin.left,margin.left+graphic_w]),
-            sf: d3.scaleLinear()
-                           .domain([d3.min(dataset_coords, function(d) { return d.long; }), d3.max(dataset_coords, function(d) { return d.long; })])
-                           .range([margin.left,margin.left+graphic_w]) }
-  yScale = {dc: d3.scaleLinear()
-                   .domain([d3.min(dataset_coords, function(d) { return d.lat; }),
-                            d3.max(dataset_coords, function(d) { return d.lat; })])
-                   .range([margin.top, margin.top+graphic_h]),
-            sf: d3.scaleLinear()
-                             .domain([d3.min(dataset_coords, function(d) { return d.lat; }),
-                                      d3.max(dataset_coords, function(d) { return d.lat; })])
-                             .range([margin.top, margin.top+graphic_h])}*/
+  // Figure out which of the areas has the largest range
+  var subset_dc = dataset_coords.filter(function(d) { return d.area=="dc"; })
+  var subset_sf = dataset_coords.filter(function(d) { return d.area=="sf"; })
+  var long_ranges = [{area:"dc", range:(d3.max(subset_dc, function(d) {return d.long})-d3.min(subset_dc, function(d) {return d.long}))},
+                     {area:"sf", range:(d3.max(subset_sf, function(d) {return d.long})-d3.min(subset_sf, function(d) {return d.long}))}];
+  var lat_ranges = [{area:"dc", range:(d3.max(subset_dc, function(d) {return d.lat})-d3.min(subset_dc, function(d) {return d.lat}))},
+                    {area:"sf", range:(d3.max(subset_sf, function(d) {return d.lat})-d3.min(subset_sf, function(d) {return d.lat}))}];
+  var max_long = d3.max(long_ranges);
+  var max_lat = d3.max(lat_ranges);
+  // DC scale
+  dc_w = (long_ranges[0].range/max_long)*graphic_w;
+  dc_h = (lat_ranges[0].range/max_lat)*graphic_h;
+  xScale_dc = d3.scaleLinear()
+                .domain([d3.min(subset_dc, function(d) { return d.long; }), d3.max(subset_dc, function(d) { return d.long; })])
+                .range([(graphic_w-dc_w)/2, (graphic_w-dc_w)/2+dc_w]); // if it's not the max, then center
+  yScale_dc = d3.scaleLinear()
+                .domain([d3.min(subset_dc, function(d) { return d.lat; }), d3.max(subset_dc, function(d) { return d.lat; })])
+                .range([(graphic_h-dc_h)/2, (graphic_h-dc_h)/2+dc_hs]);
+  // SF scale
+  sf_w = (long_ranges[1].range/max_long)*graphic_w;
+  sf_h = (lat_ranges[1].range/max_lat)*graphic_h;
+  xScale_sf = d3.scaleLinear()
+                .domain([d3.min(subset_sf, function(d) { return d.long; }), d3.max(subset_sf, function(d) { return d.long; })])
+                .range([(graphic_w-sf_w)/2, (graphic_w-sf_w)/2+sf_w]); // if it's not the max, then center
+  yScale_sf = d3.scaleLinear()
+                .domain([d3.min(subset_sf, function(d) { return d.lat; }), d3.max(subset_sf, function(d) { return d.lat; })])
+                .range([(graphic_h-sf_h)/2, (graphic_h-sf_h)/2+sf_hs]);
 
-  // Plotting coordinates
-  plotCoords();
+
 }); // end d3.csv coord
 
 // Plot lines
