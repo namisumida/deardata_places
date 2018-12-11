@@ -8,8 +8,8 @@ date,start_location,end_location,mode,n_people
 7/24/2017,Oakland home,Greenberg,bike,1
 7/24/2017,Greenberg,Oakland home,bike,1
 7/24/2017,Oakland home,Walgreens,walk,1
-7/24/2017,Walgreens,TJ Oakland,walk,1
-7/24/2017,TJ Oakland,Oakland home,walk,1
+7/24/2017,Walgreens,TJ's Oakland,walk,1
+7/24/2017,TJ's Oakland,Oakland home,walk,1
 7/25/2017,Oakland home,Greenberg,bike,1
 7/25/2017,Greenberg,Oakland home,bike,1
 7/25/2017,Oakland home,Fitness SF,walk,1
@@ -25,7 +25,7 @@ date,start_location,end_location,mode,n_people
 7/28/2017,Oakland home,Shan Dong,car,2
 7/28/2017,Shan Dong,Freezing Point Creamery,walk,2
 7/28/2017,Freezing Point Creamery,Oakland home,car,2
-7/29/2017,Oakland home,Alex's home,metro,1
+7/29/2017,Oakland home,Alex's house,metro,1
 11/6/2018,Old home,Work,bus,1
 11/6/2018,Work,Lafayette Park,walk,1
 11/6/2018,Lafayette Park,Work,walk,1

@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////////////
 // Data
-var dataset_coords, dataset_log, yScale, xScale;
+var dataset_coords, dataset_log, subset_coords, subset_log, yScale, xScale, placeList;
 function rowConverter1(d) {
   return {
     location: d.location,
@@ -18,47 +18,63 @@ function rowConverter2(d) {
     mode: d.mode,
     n_people: parseInt(d.n_people)
   }
-}
-// Plot coordinates
-d3.csv('Data/deardata_places_coord.csv', rowConverter1, function(data) {
-  dataset_coords = data;
+};
+function getCoord(place) {
+  index = placeList.indexOf(place);
+  return subset_coords[index];
+}; // end get coord function
 
-  // Scales
-  // Figure out which of the areas has the largest range
-  var subset_dc = dataset_coords.filter(function(d) { return d.area=="dc"; })
-  var subset_sf = dataset_coords.filter(function(d) { return d.area=="sf"; })
-  var long_ranges = [{area:"dc", range:(d3.max(subset_dc, function(d) {return d.long})-d3.min(subset_dc, function(d) {return d.long}))},
-                     {area:"sf", range:(d3.max(subset_sf, function(d) {return d.long})-d3.min(subset_sf, function(d) {return d.long}))}];
-  var lat_ranges = [{area:"dc", range:(d3.max(subset_dc, function(d) {return d.lat})-d3.min(subset_dc, function(d) {return d.lat}))},
-                    {area:"sf", range:(d3.max(subset_sf, function(d) {return d.lat})-d3.min(subset_sf, function(d) {return d.lat}))}];
-  var max_long = d3.max(long_ranges);
-  var max_lat = d3.max(lat_ranges);
-  // DC scale
-  dc_w = (long_ranges[0].range/max_long)*graphic_w;
-  dc_h = (lat_ranges[0].range/max_lat)*graphic_h;
-  xScale_dc = d3.scaleLinear()
-                .domain([d3.min(subset_dc, function(d) { return d.long; }), d3.max(subset_dc, function(d) { return d.long; })])
-                .range([(graphic_w-dc_w)/2, (graphic_w-dc_w)/2+dc_w]); // if it's not the max, then center
-  yScale_dc = d3.scaleLinear()
-                .domain([d3.min(subset_dc, function(d) { return d.lat; }), d3.max(subset_dc, function(d) { return d.lat; })])
-                .range([(graphic_h-dc_h)/2, (graphic_h-dc_h)/2+dc_hs]);
-  // SF scale
-  sf_w = (long_ranges[1].range/max_long)*graphic_w;
-  sf_h = (lat_ranges[1].range/max_lat)*graphic_h;
-  xScale_sf = d3.scaleLinear()
-                .domain([d3.min(subset_sf, function(d) { return d.long; }), d3.max(subset_sf, function(d) { return d.long; })])
-                .range([(graphic_w-sf_w)/2, (graphic_w-sf_w)/2+sf_w]); // if it's not the max, then center
-  yScale_sf = d3.scaleLinear()
-                .domain([d3.min(subset_sf, function(d) { return d.lat; }), d3.max(subset_sf, function(d) { return d.lat; })])
-                .range([(graphic_h-sf_h)/2, (graphic_h-sf_h)/2+sf_hs]);
-
-
-}); // end d3.csv coord
-
-// Plot lines
+// Read in data
 d3.csv('Data/deardata_places_log.csv', rowConverter2, function(data) {
   dataset_log = data;
-}); // end d3.csv coord
+
+  // Plot coordinates
+  d3.csv('Data/deardata_places_coord.csv', rowConverter1, function(data) {
+    dataset_coords = data;
+
+    // Scales
+    // Figure out which of the areas has the largest range
+    var subset_dc = dataset_coords.filter(function(d) { return d.area=="dc"; })
+    var subset_sf = dataset_coords.filter(function(d) { return d.area=="sf"; })
+    var long_ranges = [{area:"dc", range:(d3.max(subset_dc, function(d) {return d.long})-d3.min(subset_dc, function(d) {return d.long}))},
+                       {area:"sf", range:(d3.max(subset_sf, function(d) {return d.long})-d3.min(subset_sf, function(d) {return d.long}))}];
+    var lat_ranges = [{area:"dc", range:(d3.max(subset_dc, function(d) {return d.lat})-d3.min(subset_dc, function(d) {return d.lat}))},
+                      {area:"sf", range:(d3.max(subset_sf, function(d) {return d.lat})-d3.min(subset_sf, function(d) {return d.lat}))}];
+    var max_long = d3.max(long_ranges, function(d) { return d.range; });
+    var max_lat = d3.max(lat_ranges, function(d) { return d.range; });
+
+    function updatePlace(area) {
+      // update subsets
+      subset_coords = dataset_coords.filter(function(d) { return d.area == area; });
+      placeList = subset_coords.map(a => a.location);
+      subset_log = dataset_log.filter(function(d) { return placeList.includes(d.start_location) | placeList.includes(d.end_location) });
+
+      // update scales
+      var currArea = area.area;
+      var currLongMin = d3.min(subset_coords, function(d) {return d.long});
+      var currLongMax = d3.max(subset_coords, function(d) {return d.long});
+      var currLongRange = currLongMax-currLongMin;
+      var currW = (currLongRange/max_long)*graphic_w;
+      xScale = d3.scaleLinear()
+                 .domain([currLongMin, currLongMax])
+                 .range([margin.left+(graphic_w-currW)/2, (graphic_w-currW)/2+currW+margin.left]);
+
+      var currLatMin = d3.min(subset_coords, function(d) {return d.lat});
+      var currLatMax = d3.max(subset_coords, function(d) {return d.lat});
+      var currLatRange = currLatMax-currLatMin;
+      var currH = (currLatRange/max_lat)*graphic_h;
+
+      yScale = d3.scaleLinear()
+                 .domain([currLatMin, currLatMax])
+                 .range([(graphic_h-currH)/2+currH+margin.top, (graphic_h-currH)/2+margin.top]);
+    }; // end update place function
+
+    updatePlace("dc");
+    plotCoords();
+    plotLines();
+
+  }); // end d3.csv coord
+}); // end d3.csv log
 
 /////////////////////////////////////////////////////////////////////////////////////
 // Margins
@@ -69,24 +85,68 @@ var margin = {left: 10, right: 10, top: 10, bottom: 10}
 var graphic_w = w-margin.left-margin.right;
 var graphic_h = h-margin.top-margin.bottom;
 
+var light_red = d3.rgb(229,155,152);
+var light_repred = d3.rgb(227,128,115);
+var light_plum = d3.rgb(185, 123, 134);
+var light_orange = d3.rgb(242,197,128);
+var light_yellow = d3.rgb(241,200,132);
+var light_mustard = d3.rgb(227,203,130);
+var light_green = d3.rgb(196,202,138);
+var light_blue = d3.rgb(113,192,253);
+var light_demblue = d3.rgb(133,167,190);
+var light_purple = d3.rgb(171,164,178);
 
 /////////////////////////////////////////////////////////////////////////////////////
 // Plotting functions
-function plotCoords(dataset_places) {
+function plotCoords() {
   svg.selectAll("placeDots")
-     .data(dataset_coords)
+     .data(subset_coords)
      .enter()
      .append("circle")
      .attr("class", "placeDots")
      .attr("cx", function(d) {
-       return xScale(d.long)
+       return xScale(d.long);
      })
      .attr("cy", function(d) {
-       return yScale(d.lat)
+       return yScale(d.lat);
      })
-     .attr("r", 3)
+     .attr("r", 2)
      .style("fill", "white")
      .on("mouseover", function(d) {
        console.log(d);
      })
 }; // end plot coords function
+
+// Plotting lines
+function plotLines() {
+  svg.selectAll("lines")
+     .data(subset_log)
+     .enter()
+     .append("line")
+     .attr("x1", function(d) {
+       return xScale(getCoord(d.start_location).long);
+     })
+     .attr("y1", function(d) {
+       return yScale(getCoord(d.start_location).lat);
+     })
+     .attr("x2", function(d) {
+       return xScale(getCoord(d.end_location).long);
+     })
+     .attr("y2", function(d) {
+       return yScale(getCoord(d.end_location).lat);
+     })
+     .style("stroke", function(d) {
+       if (d.mode=="walk") {
+         return light_demblue;
+       }
+       else if (d.mode=="bike") {
+         return light_green;
+       }
+       else if (d.mode=="car") {
+         return light_repred;
+       }
+       else if (d.mode=="bus" | d.mode=="metro") {
+         return light_yellow;
+       }
+     })
+}; // end plot lines
