@@ -1,10 +1,34 @@
+@font-face {
+  font-family: radnika-black;
+  src: url("fonts/Radnika-Black.otf");
+}
+@font-face {
+  font-family: radnika-bold;
+  src: url("fonts/Radnika-Bold.otf");
+}
+@font-face {
+  font-family: radnika-regular;
+  src: url("fonts/Radnika-Regular.otf");
+}
+@font-face {
+  font-family: radnika-condensed;
+  src: url("fonts/Radnika-Condensed.otf");
+}
+@font-face {
+  font-family: radnika-medium;
+  src: url("fonts/Radnika-Medium.otf");
+}
+@font-face {
+  font-family: stratum-medium;
+  src: url("fonts/Stratum2-Medium.otf");
+}
 body {
   min-width: 800px;
   max-width: 850px;
   margin: 0 auto;
   background-color: black;
   color: white;
-  font-family: system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-family: radnika-regular;
 }
 #title {
   position: relative;
@@ -18,12 +42,83 @@ h1 {
   font-size: 30px;
   text-align: center;
   margin: 0;
+  font-family: radnika-black;
 }
 h3 {
   font-size: 14px;
+  font-family: radnika-bold;
 }
 p {
   font-size: 13px;
+  font-family: radnika-regular;
+}
+#options {
+  position: relative;
+  margin: 0 auto;
+  width: 470px;
+  margin-top: 10px;
+}
+#container-areaButtons {
+  float:left;
+}
+#button-instructions {
+  margin: 5px;
+  width: 100%;
+}
+button {
+  margin: 5px;
+  background-color: black;
+  width: 80px;
+  height: 25px;
+  color: #a19da8;
+  border: 1.5px solid #a19da8;
+  border-radius: 3px;
+  font-family: stratum-medium;
+  font-size: 14px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+#button-dc {
+  width: 120px;
+  background-color: #a19da8;
+  color: black;
+}
+#container-weekSlider {
+  float: right;
+  width: 200px;
+}
+#slider-instructions {
+  margin: 5px;
+  width: 100%;
+}
+.slidecontainer {
+  float: right;
+}
+.slider {
+  width: 100%;
+  -webkit-appearance: none;
+  position: relative;
+  margin: 5px;
+  margin-top: 15px;
+  height: 5px;
+  background: rgb(200,200,200);
+  -webkit-transition: .2s;
+  cursor: pointer;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 10px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: rgb(227,128,115);
+  cursor: pointer; /* Cursor on hover */
+}
+.slider::-moz-range-thumb {
+  width: 10px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: rgb(79,39,79);
+  cursor: pointer; /* Cursor on hover */
 }
 #graphic {
   margin-top: 20px;

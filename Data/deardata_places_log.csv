@@ -26,45 +26,11 @@ date,start_location,end_location,mode,n_people
 7/28/2017,Shan Dong,Freezing Point Creamery,walk,2
 7/28/2017,Freezing Point Creamery,Oakland home,car,2
 7/29/2017,Oakland home,Alex's house,metro,1
-11/6/2018,Old home,Work,bus,1
-11/6/2018,Work,Lafayette Park,walk,1
-11/6/2018,Lafayette Park,Work,walk,1
-11/6/2018,Work,1150 15th St NW,walk,1
-11/6/2018,1150 15th St NW,TJ's 14th St,walk,1
-11/6/2018,TJ's 14th St,Old home,walk,1
-11/7/2018,Old home,Work,bus,1
-11/7/2018,Work,Old home,bus,1
-11/8/2018,Old home,Work,bus,1
-11/8/2018,Work,DC Library Express,walk ,1
-11/8/2018,DC Library Express,Work,walk,1
-11/8/2018,Work,Old home,walk,1
-11/8/2018,Old home,Banneker,run,1
-11/8/2018,Banneker,Old home,walk,1
-11/9/2018,Old home,Work,bus,1
-11/9/2018,Work,1150 15th St NW,walk,1
-11/9/2018,1150 15th St NW,CVS near home,walk,1
-11/9/2018,CVS near home,Old home,walk,1
-11/10/2018,Old home,La Colombe,walk,1
-11/10/2018,La Colombe,Old home,walk,1
-11/10/2018,Old home,Banneker,run,1
-11/10/2018,Banneker,Old home,run,1
-11/10/2018,Old home,Target,walk,1
-11/10/2018,Target,Giant,walk,1
-11/10/2018,Giant,Old home,walk,1
-11/10/2018,Old home,Big Hunt,bus,1
-11/10/2018,Big Hunt,Raven Grill,car,3
-11/10/2018,Raven Grill,Old home,walk,1
-11/11/2018,Old home,Woodley Park metro,bus,1
-11/11/2018,Woodley Park metro,Friendship Heights metro,metro,1
-11/11/2018,Friendship Heights metro,Lake Fairfax,car,4
-11/11/2018,Lake Fairfax,Mookie's BBQ,car,4
-11/11/2018,Mookie's BBQ,Friendship Heights metro,car,4
-11/11/2018,Friendship Heights metro,Woodley Park metro,metro,3
-11/11/2018,Woodley Park metro,Old home,bus,1
-11/11/2018,Old home,930 club,walk,3
-11/11/2018,930 club,Old home,walk,1
-11/12/2018,Old home,Lake Fairfax,car,3
-11/12/2018,Lake Fairfax,Old home,car,3
+7/30/2017,Alex's house,Franklin Park,car,2
+7/30/2017,Franklin Park,El Metate,walk,3
+7/30/2017,El Metate,Oakland home,car,2
+7/30/2017,Oakland home,Bushrod house,bike,1
+7/30/2017,Bushrod house,Oakland home,bike,1
 12/2/2018,Home,Polo fields,bike,1
 12/2/2018,Polo fields,Glen's Garden Market,bike,10
 12/2/2018,Glen's Garden Market,Hana Market,bike,1
@@ -99,3 +65,17 @@ date,start_location,end_location,mode,n_people
 12/9/18,Hana Market,Lukiih's apartment,car,2
 12/9/18,Lukiih's apartment,Home,walk,1
 12/10/18,Home,Work,bus,1
+12/10/18,Work,Marshall's,bus,1
+12/10/18,Marshall's,Home,walk,1
+12/11/18,Home,Work,bus,1
+12/11/18,Work,Home,bus,1
+12/11/18,Home,Bailey's apartment,bike,2
+12/11/18,Bailey's apartment,Home,bike,2
+12/12/18,Home,Giant,walk,1
+12/12/18,Giant,Home,walk,1
+12/12/18,Home,TJ's Foggy Bottom,metro,1
+12/12/18,TJ's Foggy Bottom,Georgetown movie theater,walk,1
+12/12/18,Georgetown movie theater,Blue Bottle Georgetown,walk,1
+12/12/18,Blue Bottle Georgetown,Georgetown movie theater,walk,1
+12/12/18,Georgetown movie theater,Palantir,walk,1
+12/12/18,Palantir,Eliza's house,car,3

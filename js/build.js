@@ -73,6 +73,37 @@ d3.csv('Data/deardata_places_log.csv', rowConverter2, function(data) {
     plotCoords();
     plotLines();
 
+    d3.select("#button-dc").on("click", function() {
+      // Button appearance
+      var button = d3.select(this);
+      button.style("background-color", d3.color("#a19da8"))
+            .style("color", "black");
+      d3.select("#button-sf")
+        .style("background-color", "black")
+        .style("color", d3.color("#a19da8"));
+
+      // update graphics
+      updatePlace("dc");
+      updateCoords();
+      updateLines();
+    }); // click DC button
+
+    d3.select("#button-sf").on("click", function() {
+      // Button appearance
+      var button = d3.select(this);
+      button.style("background-color", d3.color("#a19da8"))
+            .style("color", "black");
+      d3.select("#button-dc")
+        .style("background-color", "black")
+        .style("color", d3.color("#a19da8"));
+
+      // update graphics
+      updatePlace("sf");
+      updateCoords();
+      updateLines();
+    }); // click DC button
+
+
   }); // end d3.csv coord
 }); // end d3.csv log
 
@@ -81,7 +112,7 @@ d3.csv('Data/deardata_places_log.csv', rowConverter2, function(data) {
 var svg = d3.select("#svg-graphic");
 var w = document.getElementById("svg-graphic").getBoundingClientRect().width;
 var h = document.getElementById("svg-graphic").getBoundingClientRect().height;
-var margin = {left: 10, right: 10, top: 10, bottom: 10}
+var margin = {left: 10, right: 10, top: 20, bottom: 20}
 var graphic_w = w-margin.left-margin.right;
 var graphic_h = h-margin.top-margin.bottom;
 
@@ -117,12 +148,42 @@ function plotCoords() {
      })
 }; // end plot coords function
 
+// Udating coordinates
+function updateCoords() {
+  var dots = svg.selectAll(".placeDots")
+                .data(subset_coords);
+  dots.exit().remove();
+  var enterDots = dots.enter()
+                       .append("circle")
+                       .attr("class", "placeDots")
+                       .attr("cx", function(d) {
+                         return xScale(d.long);
+                       })
+                       .attr("cy", function(d) {
+                         return yScale(d.lat);
+                       })
+                       .attr("r", 2);
+  dots = dots.merge(enterDots);
+  dots.attr("cx", function(d) {
+        return xScale(d.long);
+      })
+      .attr("cy", function(d) {
+        return yScale(d.lat);
+      })
+      .attr("r", 2)
+      .style("fill", "white")
+      .on("mouseover", function(d) {
+        console.log(d);
+      });
+}; // end update coords
+
 // Plotting lines
 function plotLines() {
   svg.selectAll("lines")
      .data(subset_log)
      .enter()
      .append("line")
+     .attr("class", "logLines")
      .attr("x1", function(d) {
        return xScale(getCoord(d.start_location).long);
      })
@@ -150,3 +211,53 @@ function plotLines() {
        }
      })
 }; // end plot lines
+
+// Updating lines
+function updateLines() {
+  var lines = svg.selectAll(".logLines")
+                 .data(subset_log);
+  lines.exit().remove();
+  var enterLines = lines.enter()
+                        .append("line")
+                        .attr("class", "logLines")
+                        .attr("x1", function(d) {
+                          return xScale(getCoord(d.start_location).long);
+                        })
+                        .attr("y1", function(d) {
+                          return yScale(getCoord(d.start_location).lat);
+                        })
+                        .attr("x2", function(d) {
+                          return xScale(getCoord(d.end_location).long);
+                        })
+                        .attr("y2", function(d) {
+                          return yScale(getCoord(d.end_location).lat);
+                        });
+  lines = lines.merge(enterLines);
+  lines.attr("class", "logLines")
+        .attr("x1", function(d) {
+          return xScale(getCoord(d.start_location).long);
+        })
+        .attr("y1", function(d) {
+          return yScale(getCoord(d.start_location).lat);
+        })
+        .attr("x2", function(d) {
+          return xScale(getCoord(d.end_location).long);
+        })
+        .attr("y2", function(d) {
+          return yScale(getCoord(d.end_location).lat);
+        })
+        .style("stroke", function(d) {
+          if (d.mode=="walk") {
+            return light_demblue;
+          }
+          else if (d.mode=="bike") {
+            return light_green;
+          }
+          else if (d.mode=="car") {
+            return light_repred;
+          }
+          else if (d.mode=="bus" | d.mode=="metro") {
+            return light_yellow;
+          }
+        });
+}; // end update lines
